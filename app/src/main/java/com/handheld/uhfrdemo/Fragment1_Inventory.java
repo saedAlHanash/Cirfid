@@ -1,6 +1,7 @@
 package com.handheld.uhfrdemo;
 
 import android.annotation.SuppressLint;
+import android.app.Dialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -28,6 +29,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.handheld.uhfr.R;
+import com.handheld.uhfrdemo.SAED.DialogSetIp;
+import com.handheld.uhfrdemo.SAED.SharedPreference;
 import com.handheld.uhfrdemo.SAED.SocketClient;
 import com.uhf.api.cls.Reader.TAGINFO;
 
@@ -65,6 +68,7 @@ public class Fragment1_Inventory extends Fragment implements OnCheckedChangeList
     private Button btnStart;//inventory button
     private Button btnClear;// clear button
     private Button btnExport;// clear button
+    private Button ipAddressBtn;// ip button
     //    private Button btnTime;// clear button
     private CheckBox checkMulti;//multi model check box
     private CheckBox checkTid;//multi model check box
@@ -86,6 +90,7 @@ public class Fragment1_Inventory extends Fragment implements OnCheckedChangeList
 
     //saed:
     MainActivity myActivity;
+    DialogSetIp dialog;
 
     long statenvtick;
     //handler
@@ -206,8 +211,13 @@ public class Fragment1_Inventory extends Fragment implements OnCheckedChangeList
 
         requireActivity().getApplicationContext().registerReceiver(keyReceiver, filter);
 
-        ip = "192.168.1.103";
-        port = 8888;
+        ip = SharedPreference.getIp().replaceAll("\\s+", "");
+        port = SharedPreference.getPort();
+
+        if (ip.isEmpty())
+            Toast.makeText(myActivity, "pleas set ip address", Toast.LENGTH_SHORT).show();
+        else
+            ipAddressBtn.setText(ip + ":" + port);
 
         initSocket(ip, port);
 
@@ -260,11 +270,12 @@ public class Fragment1_Inventory extends Fragment implements OnCheckedChangeList
 
         //call back active when connect stat change
         socketClient.setOnChangeConnectStatListener(connect -> {
-            //
-            requireActivity().runOnUiThread(() -> {
 
-                if (!isAdded())
-                    return;
+            if (!isAdded())
+                return;
+
+            myActivity.runOnUiThread(() -> {
+
 
                 if (connect)
                     notConnectTv.setVisibility(View.GONE);
@@ -300,8 +311,9 @@ public class Fragment1_Inventory extends Fragment implements OnCheckedChangeList
 //        handler.postDelayed(runnable, 3000);
 //    }
 
+    @SuppressLint("SetTextI18n")
     private void initView() {
-        myActivity = (MainActivity) requireActivity();
+
         tvTagCount = (TextView) view.findViewById(R.id.textView_tag_count);
         lvEpc = (ListView) view.findViewById(R.id.listView_epc);
         btnStart = (Button) view.findViewById(R.id.button_start);
@@ -317,6 +329,21 @@ public class Fragment1_Inventory extends Fragment implements OnCheckedChangeList
         checkPlay.setOnCheckedChangeListener(this);
         btnClear = (Button) view.findViewById(R.id.button_clear_epc);
         btnExport = view.findViewById(R.id.button_export);
+
+        //saed:
+        myActivity = (MainActivity) requireActivity();
+        dialog = new DialogSetIp(myActivity);
+
+        ipAddressBtn = view.findViewById(R.id.ip_address);
+        ipAddressBtn.setOnClickListener(this::onClick);
+
+        dialog.setOnCancelListener(d -> {
+            ip = SharedPreference.getIp().replaceAll("\\s+", "");
+            port = SharedPreference.getPort();
+
+            ipAddressBtn.setText(ip + ":" + port);
+        });
+
         lvEpc.setFocusable(false);
         lvEpc.setClickable(false);
         lvEpc.setItemsCanFocus(false);
@@ -324,6 +351,7 @@ public class Fragment1_Inventory extends Fragment implements OnCheckedChangeList
         lvEpc.setOnItemClickListener(null);
         btnStart.setOnClickListener(this);
         btnExport.setOnClickListener(this);
+
 //        btnTime.setOnClickListener(this);
         btnClear.setOnClickListener(this);
         this.notConnectTv = view.findViewById(R.id.not_connect);
@@ -647,6 +675,7 @@ public class Fragment1_Inventory extends Fragment implements OnCheckedChangeList
         }
     }
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -664,6 +693,10 @@ public class Fragment1_Inventory extends Fragment implements OnCheckedChangeList
                     Toast.makeText(getContext(), "Fila", Toast.LENGTH_SHORT).show();
                 }
                 break;
+            case R.id.ip_address: {
+                dialog.show();
+                break;
+            }
 
 //            case R.id.button_time_start:
 //                statenvtick = System.currentTimeMillis();
@@ -714,8 +747,10 @@ public class Fragment1_Inventory extends Fragment implements OnCheckedChangeList
         }
         this.tryConnect = false;
 
-        if (socketClient != null)
+        if (socketClient != null) {
+            socketClient.setOnChangeConnectStatListener(null);
             this.socketClient.close();
+        }
         super.onDestroyView();
     }
 

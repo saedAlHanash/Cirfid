@@ -1,6 +1,7 @@
 package com.handheld.uhfrdemo;
 
 import java.util.Set;
+
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -25,6 +26,7 @@ import android.widget.Toast;
 
 import com.handheld.uhfr.R;
 import com.handheld.uhfr.UHFRManager;
+import com.handheld.uhfrdemo.SAED.SharedPreference;
 import com.uhf.api.cls.Reader;
 
 public class MainActivity extends FragmentActivity implements View.OnClickListener, ActivityCompat.OnRequestPermissionsResultCallback {
@@ -59,6 +61,9 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        //saed:
+        SharedPreference.getInstance(this);
+
         if (!this.isTaskRoot()) {
             mMultiCreate = true;
             MainActivity.this.finish();
@@ -82,46 +87,43 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         mSharedPreferences = getSharedPreferences("UHF", MODE_PRIVATE);
 
     }
+
     private SharedPreferences mSharedPreferences;
 
     @Override
     protected void onStart() {
         Log.e(TAG, "[onStart] start");
         super.onStart();
-
         if (Build.VERSION.SDK_INT == 29) {
             instance = ScanUtil.getInstance(this);
             instance.disableScanKey("134");
         }
+        mUhfrManager = UHFRManager.getInstance();// Init Uhf module
+        if (mUhfrManager != null) {
+            Reader.READER_ERR err = mUhfrManager.setPower(mSharedPreferences.getInt("readPower", 33), mSharedPreferences.getInt("writePower", 33));//set uhf module power
 
-//        mUhfrManager = UHFRManager.getInstance();// Init Uhf module
-//        mUhfrManager = new UHFRManager();
-//        if(mUhfrManager!=null){
-//            Reader.READER_ERR err = mUhfrManager.setPower(mSharedPreferences.getInt("readPower",33),
-//                    mSharedPreferences.getInt("writePower",33));//set uhf module power
-//
-//            if(err== Reader.READER_ERR.MT_OK_ERR){
-//                mUhfrManager.setRegion(Reader.Region_Conf.valueOf(mSharedPreferences.getInt("freRegion", 1)));
-//                Toast.makeText(getApplicationContext(),"FreRegion:"+Reader.Region_Conf.valueOf(mSharedPreferences.getInt("freRegion",1))+
-//                        "\n"+"Read Power:"+mSharedPreferences.getInt("readPower",33)+
-//                        "\n"+"Write Power:"+mSharedPreferences.getInt("writePower",33),Toast.LENGTH_LONG).show();
-////                showToast(getString(R.string.inituhfsuccess));
-//            }else {
-//
-//                Reader.READER_ERR err1 = mUhfrManager.setPower(30, 30);//set uhf module power
-//                if(err1== Reader.READER_ERR.MT_OK_ERR) {
-//                    mUhfrManager.setRegion(Reader.Region_Conf.valueOf(mSharedPreferences.getInt("freRegion", 1)));
-//                    Toast.makeText(getApplicationContext(), "FreRegion:" + Reader.Region_Conf.valueOf(mSharedPreferences.getInt("freRegion", 1)) +
-//                            "\n" + "Read Power:" + 30 +
-//                            "\n" + "Write Power:" + 30, Toast.LENGTH_LONG).show();
-//                }else {
-//                    showToast(getString(R.string.inituhffail));
-//                }
-//            }
-//        }else {
-//            showToast(getString(R.string.inituhffail));
-//        }
-//        Log.e(TAG, "[onStart] end");
+            if (err == Reader.READER_ERR.MT_OK_ERR) {
+                mUhfrManager.setRegion(Reader.Region_Conf.valueOf(mSharedPreferences.getInt("freRegion", 1)));
+                Toast.makeText(getApplicationContext(), "FreRegion:" + Reader.Region_Conf.valueOf(mSharedPreferences.getInt("freRegion", 1)) +
+                        "\n" + "Read Power:" + mSharedPreferences.getInt("readPower", 33) +
+                        "\n" + "Write Power:" + mSharedPreferences.getInt("writePower", 33), Toast.LENGTH_LONG).show();
+//                showToast(getString(R.string.inituhfsuccess));
+            } else {
+
+                Reader.READER_ERR err1 = mUhfrManager.setPower(30, 30);//set uhf module power
+                if (err1 == Reader.READER_ERR.MT_OK_ERR) {
+                    mUhfrManager.setRegion(Reader.Region_Conf.valueOf(mSharedPreferences.getInt("freRegion", 1)));
+                    Toast.makeText(getApplicationContext(), "FreRegion:" + Reader.Region_Conf.valueOf(mSharedPreferences.getInt("freRegion", 1)) +
+                            "\n" + "Read Power:" + 30 +
+                            "\n" + "Write Power:" + 30, Toast.LENGTH_LONG).show();
+                } else {
+                    showToast(getString(R.string.inituhffail));
+                }
+            }
+        } else {
+            showToast(getString(R.string.inituhffail));
+        }
+        Log.e(TAG, "[onStart] end");
     }
 
     @Override
@@ -205,7 +207,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
                 packInfo = packageManager.getPackageInfo(getPackageName(), 0);
                 String version = packInfo.versionName;//get this version
                 showToast("Version:" + version
-                    +"\nDate:"+"2017-05-20" +"\nType:"+mUhfrManager.getHardware());
+                        + "\nDate:" + "2017-05-20" + "\nType:" + mUhfrManager.getHardware());
             } catch (PackageManager.NameNotFoundException e) {
                 e.printStackTrace();
             }
@@ -216,6 +218,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 
 
     private Fragment mFragmentCurrent;
+
     //switch fragments
     public void switchContent(Fragment to) {
 //        Log.e("switch",""+to.getId());
@@ -270,6 +273,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
     }
 
     private long exitTime = 0;//key down time
+
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         switch (keyCode) {
@@ -293,6 +297,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
     }
 
     private Toast mToast;
+
     //show toast
     private void showToast(String info) {
         if (mToast == null) {

@@ -114,18 +114,21 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:orientation="horizontal">
+
         <CheckBox
+            android:id="@+id/checkBox_multi"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/multi_mode"
             android:checked="false"
-            android:id="@+id/checkBox_multi" />
+            android:text="@string/multi_mode" />
+
         <CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/is_tid"
             android:checked="false"
             android:id="@+id/checkBox_tid" />
+
         <CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -133,6 +136,14 @@
             android:checked="true"
             android:visibility="gone"
             android:id="@+id/checkBox_sound" />
+
+        <Button
+            android:id="@+id/ip_address"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_5sdp"
+            android:layout_weight="1"
+            android:text="set ip address" />
 
     </LinearLayout>
 

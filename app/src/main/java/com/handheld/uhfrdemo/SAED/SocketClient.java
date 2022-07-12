@@ -78,7 +78,8 @@ public class SocketClient {
             initPrintWriter();// تهيئة ال buffer writer
             isConnect = true;
 
-            connectStat.stat(true); // تغيير الحالة في ال callBack
+            if (connectStat != null)
+                connectStat.stat(true); // تغيير الحالة في ال callBack
 
 
             //تهيئة متنصت قراءة من ال socket بحيث عند انقطاع الاتصال يقوم ب exception من خلاله نقوم بتغير حالة التصال بال callBack
@@ -212,7 +213,8 @@ public class SocketClient {
                 finalIn.readBoolean();
             } catch (IOException ignore) {
                 isConnect = false;
-                connectStat.stat(false);
+                if (connectStat != null)
+                    connectStat.stat(false);
                 reConnect();
                 break;
             }
