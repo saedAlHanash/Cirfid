@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="gre">#607D8B</color>
+    <color name="blu">#03A9E4</color>
+    <color name="gre2">#4C9F50</color>
+    <color name="bg">#9E9E9E</color>
+    <color name="br">#000000</color>
+    <color name="wr">#FFFFFF</color>
+    <color name="mycolor1">#996633</color>
+    <color name="allbg">#EEEEEE</color>
+
+    <color name="main_color">#fbd703</color>
+    <color name="main_color_dark">#daa628</color>
+    <color name="main_color_light">#D1B300</color>
+    <color name="main_color_text">#4CA243</color>
+    <color name="TRANSPARENT">#00000000</color>
+    <color name="back_fill_F6">#F6F6F6</color>
+    <color name="back_fill_F1">#F1F1F1</color>
+    <color name="back_fill_F5">#F5F5F5</color>
+    <color name="ampere">#FFC107</color>
+    <color name="dark_ampere">#A17A05</color>
+    <color name="light_ampere">#45FFD24C</color>
+    <color name="ampere_bg">#EDB100</color>
+    <color name="red">#F10303</color>
+    <color name="light_gray">#F5F5F5</color>
+    <color name="light_gray_alpha">#CCF1F1F1</color>
+    <color name="light_bg">#E8E3E3</color>
+    <color name="transparency_gray">#CCF1F1F1</color>
+    <color name="orange">#EDB100</color>
+    <color name="blur">#F1F1F1</color>
+    <color name="off_white">#F1F1F1</color>
+    <color name="dark_green">#008543</color>
+    <color name="green">#4CA243</color>
+    <color name="light_green">#8BB93E</color>
+
+    <color name="white">#fff</color>
+    <color name="gray">#BEBEBE</color>
+    <color name="black">#000</color>
+    <color name="DodgerBlue">#1E90FF</color>
+    <color name="IndianRed">#CD5C5C</color>
+    <color name="Thistle">#D8BFD8</color>
+    <color name="Honeydew2">#E0EEE0</color>
+    <color name="Honeydew3">#C1CDC1</color>
+    <color name="gray_bg">#EEEEEE</color>
+    <color name="SteelBlue3">#6E7B8B</color>
+    <color name="lessBlue">#38B1BA</color>
+</resources>
