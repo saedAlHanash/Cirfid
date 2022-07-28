@@ -1,6 +1,8 @@
 package com.handheld.uhfrdemo.SAED;
 
 
+import android.view.View;
+
 import com.handheld.uhfrdemo.EpcDataModel;
 
 import java.io.BufferedInputStream;
@@ -64,13 +66,9 @@ public class SocketClient {
     /**
      * start connect with server Socket
      *
-     * @param ip   socket ip address
-     * @param port socket port
      * @return true if connecting
      */
-    public boolean connect(String ip, int port) {
-        this.ip = ip;
-        this.port = port;
+    private boolean connect() {
         try {
             inetAddress = InetAddress.getByName(ip);
             socket = new Socket(inetAddress, port);// الاتصال بال socket
@@ -80,7 +78,6 @@ public class SocketClient {
 
             if (connectStat != null)
                 connectStat.stat(true); // تغيير الحالة في ال callBack
-
 
             //تهيئة متنصت قراءة من ال socket بحيث عند انقطاع الاتصال يقوم ب exception من خلاله نقوم بتغير حالة التصال بال callBack
             //تم اللجوء لهذا الحل لان ال socket.isConnected() تقوم بإرجاع true دوما
@@ -96,6 +93,40 @@ public class SocketClient {
         } catch (IOException e) {
             return false;
         }
+    }
+
+    /**
+     * to checking if can reConnect with socket <p>
+     * will be false when onDestroy Activity
+     */
+    public boolean tryConnect = true;
+    Thread t;
+
+    public void connect(String mIp, int mPort) {
+        this.ip = mIp;
+        this.port = mPort;
+        tryConnect = true;
+
+        t = new Thread(() -> { //لانه لا يمكن الاتصال من ال UI thread
+            while (tryConnect) { // من أجل المحاولة والمحاولة حتى تمام عملية الاتصال
+                //اذا الاتصال تم
+                if (connect()) {
+                    if (connectStat != null)
+                        connectStat.stat(true);
+
+                    this.tryConnect = false;
+                    break;
+                } else // اذا لم يتصل
+                    try {
+                        Thread.sleep(5000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+            }
+
+        });
+
+        t.start();
     }
 
     /**
@@ -121,7 +152,7 @@ public class SocketClient {
     /**
      * reconnect with server socket
      */
-    public void reConnect() {
+    private void reConnect() {
         if (reconnect)
             return;
 
@@ -130,7 +161,7 @@ public class SocketClient {
         new Thread(() -> {
             while (reconnect) {
                 //اذا الاتصال تم
-                if (connect(ip, port)) {
+                if (connect()) {
                     reconnect = false;
                     break;
                 } else // اذا لم يتصل
@@ -142,6 +173,18 @@ public class SocketClient {
             }
         }).start();
     }
+
+    public void reconnect(String mIp, int mPort) {
+        this.ip = mIp;
+        this.port = mPort;
+        close();
+
+        if (t != null)
+            t.interrupt();
+
+        connect(mIp, mPort);
+    }
+
 
     public void sendBoolean(boolean b) {
         if (!socket.isConnected()
@@ -227,6 +270,11 @@ public class SocketClient {
     public void close() {
         new Thread(() -> {
             try {
+                this.tryConnect = false;
+
+                if (connectStat != null)
+                    connectStat.stat(false);
+
 
                 if (socket != null)
                     socket.close();

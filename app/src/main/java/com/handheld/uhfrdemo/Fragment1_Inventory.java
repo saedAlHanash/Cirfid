@@ -227,11 +227,7 @@ public class Fragment1_Inventory extends Fragment implements OnCheckedChangeList
 
     //saed:
     public SocketClient socketClient = new SocketClient();
-    /**
-     * to checking if can reConnect with socket <p>
-     * will be false when onDestroy Activity
-     */
-    public boolean tryConnect = true;
+
     /**
      * socket ip address
      */
@@ -250,33 +246,13 @@ public class Fragment1_Inventory extends Fragment implements OnCheckedChangeList
      */
     public void initSocket(String mIp, int mPort) {
 
-        new Thread(() -> { //لانه لا يمكن الاتصال من ال UI thread
-            while (tryConnect) { // من أجل المحاولة والمحاولة حتى تمام عملية الاتصال
-
-                //اذا الاتصال تم
-                if (socketClient.connect(mIp, mPort)) {
-                    requireActivity().runOnUiThread(() -> notConnectTv.setVisibility(View.GONE));
-                    this.tryConnect = false;
-                    break;
-                } else // اذا لم يتصل
-                    try {
-                        Thread.sleep(5000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-            }
-
-        }).start();
-
+        socketClient.connect(mIp, mPort);
         //call back active when connect stat change
         socketClient.setOnChangeConnectStatListener(connect -> {
-
             if (!isAdded())
                 return;
 
             myActivity.runOnUiThread(() -> {
-
-
                 if (connect)
                     notConnectTv.setVisibility(View.GONE);
                 else
@@ -335,13 +311,16 @@ public class Fragment1_Inventory extends Fragment implements OnCheckedChangeList
         dialog = new DialogSetIp(myActivity);
 
         ipAddressBtn = view.findViewById(R.id.ip_address);
-        ipAddressBtn.setOnClickListener(this::onClick);
+        ipAddressBtn.setOnClickListener(this);
 
         dialog.setOnCancelListener(d -> {
             ip = SharedPreference.getIp().replaceAll("\\s+", "");
             port = SharedPreference.getPort();
 
             ipAddressBtn.setText(ip + ":" + port);
+
+            if (socketClient != null)
+                socketClient.reconnect(ip, port);
         });
 
         lvEpc.setFocusable(false);
@@ -745,7 +724,6 @@ public class Fragment1_Inventory extends Fragment implements OnCheckedChangeList
 //            isRunning = false;
             MainActivity.mUhfrManager.stopTagInventory();
         }
-        this.tryConnect = false;
 
         if (socketClient != null) {
             socketClient.setOnChangeConnectStatListener(null);

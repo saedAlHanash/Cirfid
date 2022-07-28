@@ -33,6 +33,9 @@ public class DialogSetIp extends Dialog {
         port = findViewById(R.id.port);
         save = findViewById(R.id.save_ip);
 
+        ip.setText(SharedPreference.getIp());
+        port.setText(String.valueOf(SharedPreference.getPort()));
+
     }
 
     void listeners() {
