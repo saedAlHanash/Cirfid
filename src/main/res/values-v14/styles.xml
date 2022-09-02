@@ -1,0 +1,47 @@
+<resources>
+
+    <!--
+        Base application theme for API 14+. This theme completely replaces
+        AppBaseTheme from BOTH res/values/styles.xml and
+        res/values-v11/styles.xml on API 14+ devices.
+    -->
+    <style name="AppBaseTheme" parent="android:Theme.Holo.Light.DarkActionBar">
+        <!-- API 14 theme customizations can go here. -->
+    </style>
+
+
+
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light">
+        <item name="android:paddingStart">@dimen/_10sdp</item>
+        <item name="android:paddingEnd">@dimen/_10sdp</item>
+    </style>
+
+    <array name="saed">
+        <item>مخزن 1</item>
+        <item>مخزن 2</item>
+        <item>مخزن 3</item>
+        <item>مخزن 4</item>
+        <item>مخزن 5</item>
+    </array>
+
+    <array name="saed1">
+        <item>مكان 1</item>
+        <item>مكان 2</item>
+        <item>مكان 3</item>
+        <item>مكان 4</item>
+        <item>مكان 5</item>
+    </array>
+
+    <array name="language">
+        <item>@string/language</item>
+        <item>العربية</item>
+        <item>English</item>
+    </array>
+
+    <array name="scan_type">
+        <item>single</item>
+        <item>loop</item>
+    </array>
+
+</resources>

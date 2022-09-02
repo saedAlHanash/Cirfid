@@ -1,0 +1,13 @@
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/textView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:drawableEnd="@drawable/ic_baseline_arrow_drop_down_24"
+    android:gravity="center"
+    android:maxLines="1"
+    android:paddingEnd="@dimen/_5sdp"
+    android:textColor="@color/black"
+    android:textSize="@dimen/_10ssp"
+    tools:ignore="RtlSymmetry"
+    tools:text="saed" />

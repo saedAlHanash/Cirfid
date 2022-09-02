@@ -1,0 +1,108 @@
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:clickable="true"
+    android:focusable="true"
+    tools:context="com.handheld.uhfrdemo.SAED.UI.Fragments.Prosess.ScanFragment">
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <Button
+            android:id="@+id/read"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_5sdp"
+            android:layout_weight="1"
+            android:background="@drawable/button_selector"
+            android:fontFamily="@font/cairo_bold"
+            android:text="@string/readCard"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_12ssp" />
+
+        <Button
+            android:id="@+id/stop"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_5sdp"
+            android:layout_weight="1"
+            android:background="@drawable/button_selector"
+            android:fontFamily="@font/cairo_bold"
+            android:text="@string/stop"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_12ssp" />
+
+        <Button
+            android:id="@+id/clean"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_5sdp"
+            android:layout_weight="1"
+            android:background="@drawable/button_selector"
+            android:fontFamily="@font/cairo_bold"
+            android:text="@string/clean"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_12ssp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/_5sdp"
+            android:layout_weight="1"
+            android:background="@drawable/rounded_shape"
+            android:elevation="@dimen/_2sdp"
+            android:orientation="vertical">
+
+            <Spinner
+                android:id="@+id/spinner_tybe_scan"
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_gravity="center"
+                android:background="@color/TRANSPARENT"
+                android:clickable="false"
+                android:dropDownWidth="@dimen/_120sdp"
+                android:entries="@array/scan_type"
+                android:popupBackground="@drawable/out_line_border" />
+            <!--            android:theme="@style/mySpinnerItemStyle"-->
+            <TextView
+                android:id="@+id/scan_type_tv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:drawableEnd="@drawable/ic_baseline_arrow_drop_down_24"
+                android:fontFamily="@font/cairo_bold"
+                android:gravity="center"
+                android:text="@string/single"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_11ssp" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="@dimen/_5sdp"
+        android:layout_marginEnd="@dimen/_5sdp"
+        app:layoutManager="android.support.v7.widget.GridLayoutManager"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:spanCount="2"
+        tools:listitem="@layout/item_product" />
+
+</android.support.constraint.ConstraintLayout>

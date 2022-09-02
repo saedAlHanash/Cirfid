@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:layoutDirection="ltr"
+    android:background="@color/light_gray">
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="@dimen/_150sdp"
+        android:layout_height="@dimen/_150sdp"
+        android:layout_marginTop="@dimen/_30sdp"
+        app:srcCompat="@drawable/ic_logo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView5">
+        <android.support.v7.widget.CardView
+            android:id="@+id/smart_scan"
+            android:layout_width="@dimen/_130sdp"
+            android:layout_height="@dimen/_130sdp"
+            android:layout_margin="@dimen/_20sdp"
+            app:cardBackgroundColor="@color/card_selector"
+            app:cardCornerRadius="@dimen/_10sdp"
+            app:cardElevation="@dimen/_5sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/scan">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="@dimen/_10sdp"
+                    android:layout_weight="1"
+                    android:padding="@dimen/_5sdp"
+                    android:tint="@color/text_selector"
+                    app:srcCompat="@drawable/smart" />
+
+                <TextView
+                    android:id="@+id/not_found"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    android:layout_weight="2"
+                    android:fontFamily="@font/cairo_semibold"
+                    android:gravity="center"
+                    android:text="@string/smart_scan"
+                    android:textColor="@color/text_selector"
+                    android:textSize="@dimen/_14ssp" />
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/inventory"
+            android:layout_width="@dimen/_130sdp"
+            android:layout_height="@dimen/_130sdp"
+            android:layout_margin="@dimen/_20sdp"
+            app:cardBackgroundColor="@color/card_selector"
+            app:cardCornerRadius="@dimen/_10sdp"
+            app:cardElevation="@dimen/_5sdp"
+            app:layout_constraintBottom_toBottomOf="@+id/scan"
+            app:layout_constraintEnd_toStartOf="@+id/scan"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/scan">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="@dimen/_10sdp"
+                    android:layout_weight="1"
+                    android:padding="@dimen/_5sdp"
+                    android:tint="@color/text_selector"
+                    app:srcCompat="@drawable/ic_costomer_report" />
+
+                <TextView
+                    android:id="@+id/scaned"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    android:layout_weight="2"
+                    android:fontFamily="@font/cairo_semibold"
+                    android:gravity="center"
+                    android:text="@string/inventory_saed"
+                    android:textColor="@color/text_selector"
+                    android:textSize="@dimen/_12ssp" />
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/scan"
+            android:layout_width="@dimen/_130sdp"
+            android:layout_height="@dimen/_130sdp"
+            android:layout_margin="@dimen/_20sdp"
+            app:cardBackgroundColor="@color/card_selector"
+            app:cardCornerRadius="@dimen/_10sdp"
+            app:cardElevation="@dimen/_5sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/imageView4"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="@dimen/_10sdp"
+                    android:layout_weight="1"
+                    android:padding="@dimen/_5sdp"
+                    android:tint="@color/text_selector"
+                    app:srcCompat="@drawable/ic_scaner" />
+
+                <TextView
+                    android:id="@+id/expected"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    android:layout_weight="2"
+                    android:fontFamily="@font/cairo_semibold"
+                    android:gravity="center"
+                    android:text="@string/scan"
+                    android:textColor="@color/text_selector"
+                    android:textSize="@dimen/_14ssp" />
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/settings"
+            android:layout_width="@dimen/_130sdp"
+            android:layout_height="@dimen/_130sdp"
+            android:layout_margin="@dimen/_20sdp"
+            app:cardBackgroundColor="@color/card_selector"
+            app:cardCornerRadius="@dimen/_10sdp"
+            app:cardElevation="@dimen/_5sdp"
+            app:layout_constraintBottom_toBottomOf="@+id/smart_scan"
+            app:layout_constraintEnd_toStartOf="@+id/smart_scan"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/smart_scan">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="@dimen/_10sdp"
+                    android:layout_weight="1"
+                    android:padding="@dimen/_5sdp"
+                    android:tint="@color/text_selector"
+                    app:srcCompat="@drawable/ic_settings" />
+
+                <TextView
+                    android:id="@+id/undefined"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    android:layout_weight="2"
+                    android:fontFamily="@font/cairo_semibold"
+                    android:gravity="center"
+                    android:text="@string/setting"
+                    android:textColor="@color/text_selector"
+                    android:textSize="@dimen/_14ssp" />
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+    </android.support.constraint.ConstraintLayout>
+
+
+</android.support.constraint.ConstraintLayout>

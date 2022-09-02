@@ -1,0 +1,69 @@
+<resources>
+
+    <!--
+        Base application theme, dependent on API level. This theme is replaced
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+    -->
+    <style name="AppBaseTheme" parent="android:Theme.Light">
+        <!--
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+        -->
+    </style>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/main_color</item>
+        <item name="colorPrimaryDark">@color/main_color_dark</item>
+        <item name="colorAccent">@color/main_color_light</item>
+    </style>
+
+	<style name="MainRadioButtonStyle">
+        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:drawablePadding">2dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_marginBottom">5dp</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:button">@null</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">#666666</item>
+    </style>
+
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light">
+        <item name="android:paddingStart">@dimen/_10sdp</item>
+        <item name="android:paddingEnd">@dimen/_10sdp</item>
+    </style>
+
+    <array name="saed">
+        <item>مخزن 1</item>
+        <item>مخزن 2</item>
+        <item>مخزن 3</item>
+        <item>مخزن 4</item>
+        <item>مخزن 5</item>
+    </array>
+
+    <array name="saed1">
+        <item>مكان 1</item>
+        <item>مكان 2</item>
+        <item>مكان 3</item>
+        <item>مكان 4</item>
+        <item>مكان 5</item>
+    </array>
+
+    <array name="language">
+        <item>@string/language</item>
+        <item>العربية</item>
+        <item>English</item>
+    </array>
+
+    <array name="scan_type">
+        <item>single</item>
+        <item>loop</item>
+    </array>
+
+</resources>

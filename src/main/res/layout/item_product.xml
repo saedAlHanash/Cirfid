@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/_3sdp"
+    android:layout_marginTop="@dimen/_5sdp"
+    android:layout_marginEnd="@dimen/_3sdp"
+    android:layout_marginBottom="@dimen/_5sdp"
+    android:layoutDirection="rtl"
+    app:cardCornerRadius="@dimen/_10sdp"
+    app:cardElevation="@dimen/_3sdp">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/imageView9"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_70sdp"
+            android:layout_margin="@dimen/_5sdp"
+            app:srcCompat="@drawable/ic_logo" />
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/_3sdp"
+            android:fontFamily="@font/cairo_semibold"
+            android:gravity="center"
+
+            android:text="اسم المنتج "
+            android:textColor="@color/main_color_dark"
+            android:textSize="@dimen/_10ssp" />
+
+        <TextView
+            android:id="@+id/epc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/cairo_semibold"
+            android:gravity="center"
+            android:text="Epc Epc Epc Epc Epc"
+            android:textSize="@dimen/_10ssp" />
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_5sdp"
+            android:visibility="gone"
+            app:cardCornerRadius="@dimen/_10sdp"
+            app:cardElevation="@dimen/_5sdp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:elevation="@dimen/_2sdp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/rounded_shape"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textView18"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/rounded_shape_tr"
+                        android:fontFamily="@font/cairo"
+                        android:gravity="center"
+                        android:paddingStart="@dimen/_5sdp"
+                        android:paddingTop="@dimen/_2sdp"
+                        android:paddingEnd="@dimen/_2sdp"
+                        android:paddingBottom="@dimen/_2sdp"
+                        android:text="@string/total"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_10ssp" />
+
+                    <TextView
+                        android:id="@+id/total"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/rounded_shape_br"
+                        android:backgroundTint="@color/off_white"
+                        android:fontFamily="@font/cairo"
+                        android:gravity="center"
+                        android:paddingStart="@dimen/_5sdp"
+                        android:paddingTop="@dimen/_3sdp"
+                        android:paddingEnd="@dimen/_2sdp"
+                        android:paddingBottom="@dimen/_3sdp"
+                        android:text="10غ"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12ssp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/rounded_shape"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/main_color_dark"
+                        android:fontFamily="@font/cairo"
+                        android:gravity="center"
+                        android:paddingStart="@dimen/_5sdp"
+                        android:paddingTop="@dimen/_2sdp"
+                        android:paddingEnd="@dimen/_2sdp"
+                        android:paddingBottom="@dimen/_2sdp"
+                        android:text="@string/pure"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_10ssp" />
+
+                    <TextView
+                        android:id="@+id/pure"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/off_white"
+                        android:fontFamily="@font/cairo"
+                        android:gravity="center"
+                        android:paddingStart="@dimen/_5sdp"
+                        android:paddingTop="@dimen/_3sdp"
+                        android:paddingEnd="@dimen/_2sdp"
+                        android:paddingBottom="@dimen/_3sdp"
+                        android:text="10غ"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12ssp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/rounded_shape"
+                    android:orientation="vertical"
+                    tools:ignore="NestedWeights">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/rounded_shape_tl"
+                        android:fontFamily="@font/cairo"
+                        android:gravity="center"
+                        android:paddingStart="@dimen/_5sdp"
+                        android:paddingTop="@dimen/_2sdp"
+                        android:paddingEnd="@dimen/_2sdp"
+                        android:paddingBottom="@dimen/_2sdp"
+                        android:text="@string/stons"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_10ssp" />
+
+                    <TextView
+                        android:id="@+id/stones"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/rounded_shape_bl"
+                        android:backgroundTint="@color/off_white"
+                        android:fontFamily="@font/cairo"
+                        android:gravity="center"
+
+                        android:paddingStart="@dimen/_5sdp"
+                        android:paddingTop="@dimen/_3sdp"
+                        android:paddingEnd="@dimen/_2sdp"
+                        android:paddingBottom="@dimen/_3sdp"
+                        android:text="10غ"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12ssp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+        <TextView
+            android:id="@+id/price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:background="@drawable/rounded_shape2"
+            android:fontFamily="@font/cairo_semibold"
+            android:gravity="center"
+            android:paddingTop="@dimen/_2sdp"
+            android:paddingBottom="@dimen/_2sdp"
+            android:text="200 $"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_12ssp" />
+
+
+    </LinearLayout>
+
+
+</android.support.v7.widget.CardView>
